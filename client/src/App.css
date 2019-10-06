@@ -1,0 +1,166 @@
+.App {
+  text-align: center;
+}
+
+/* TopBar */
+.brand {
+  font-size: .75rem;
+  border: 2px solid #333;
+  padding: .5rem;
+}
+
+
+/* Home */
+.home-table {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.home-table-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.h-100vh {
+  height: 70vh;
+}
+
+
+/* TopBar  */
+.navbar-nav > .nav-item >a {
+  position: relative;
+  text-decoration: none;
+}
+
+.navbar-nav > .nav-item > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0025FC;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.navbar-nav > .nav-item > a:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+
+/* Experience & Education */
+
+.exp-col {
+  margin-left: 60px;
+}
+.exp-col-offset {
+  margin-left: 120px;
+}
+.edu-exp {
+  padding: 10px 0;
+  position: relative;
+}
+
+.edu-exp::before {
+  content: "";
+  height: 100%;
+  left: 0;
+  background-color: #e7e7e7;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1px;
+}
+
+.edu-exp .exp-box {
+  border-radius: 7px;
+  border: 1px solid #e7e7e7;
+  margin-left: 20px;
+  padding: 20px;
+}
+
+.edu-exp .exp-box .exp-year {
+  position: relative;
+  margin: 0 0 10px 15px;
+}
+
+.edu-exp .exp-box .exp-year::after {
+  border: 3px solid #fff;
+  border-radius: 50%;
+  content: "";
+  height: 20px;
+  background-color: #000;
+  position: absolute;
+  left: -65px;
+  width: 20px;
+  z-index: 1;
+}
+
+.edu-exp .exp-box .exp-detail {
+  text-align: left;
+  margin-left: 15px;
+}
+
+.edu-exp h4,
+.exp-detail {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 0;
+}
+
+.exp-detail img {
+  height: 64px;
+  widows: 64px;
+}
+
+.position-relative {
+  text-align: left;
+}
+
+.desc {
+  line-height: 26px;
+  font-size: 1rem;
+  color: #666;
+}
+
+SocialIcon.social-icon:hover {
+  transform: rotate(360deg);
+}
+
+a.social-icon {
+  margin: .5rem;
+  transition: all 0.5s;
+}
+
+a.social-icon:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+
+/* Modal */
+.no-border-top {
+  border: none;
+}
+
+.no-border-bottom {
+  border: none;
+}
+
+#submit-btn {
+  background: #0025FC;
+  color: #fff;
+}
+
+#submit-btn:disabled{
+  background: #f2f2f2;
+  color: #c7c7c7;
+}

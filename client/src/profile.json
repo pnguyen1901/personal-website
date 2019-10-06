@@ -1,0 +1,29 @@
+{
+    "title": "Full Stack Web Developer",
+    "summary": "I am a Full Stack Web Developer with a love for technology with emphasis on end-to-end solutions. I pride myself on being able to deliver quality products that solve business problems. Being a self- starter, I can work individually or collaborate effectively in a team environment.",
+    "studies": [
+        {
+            "institute": "University of Houston",
+            "logo": "",
+            "url": "",
+            "title": "Bachelor in Industrial Engineering",
+            "graduationYear": 2018
+        }
+    ],
+    "experience": [
+        {
+            "companyName": "AIG",
+            "logo": "",
+            "url": "",
+            "roles": [
+                {
+                    "title": "Full Stack Web Developer",
+                    "description": "Used HTML5, Bootstrap4, CSS, Sass, jQuery, and JavaScript to build responsive web applications.\nDeveloped back-end using Python and Flask framework.\nManaged CRUD operations with SQL database.\nUtilized Chrome DEV tools and Inspect/Console for debugging.\nImplemented User Authentication and Authorization with Okta using OpenID Connect.\nIntegrated custom web app with ServiceNow APIs and Splunk APIs.\nUtilized Visual Studio Code and Git repositories.",
+                    "startDate": "2018-07-31",
+                    "currentJob": "true",
+                    "location": "Fort Worth, TX"
+                }
+            ]
+        }
+    ]
+}
