@@ -7,6 +7,11 @@ const AdContainer = styled(Container)`
     margin-top: 10rem;
     padding: 3rem 1.5rem;
     margin-bottom: -11rem;
+
+    // Smartphones (portrait and lanscape)
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        margin-bottom: -13rem;
+    }
 `;
 
 const AdCard = styled(Card)`
@@ -17,6 +22,13 @@ const AdCard = styled(Card)`
 const AdHeading = styled(CardTitle)`
     color: #fff;
     font-size: 1.5rem;
+
+    // Smartphones (portrait and lanscape)
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        margin-top: 1rem;
+    }
+
+
 `;
 
 const AdText = styled(CardText)`
@@ -41,6 +53,10 @@ const StyledButton = styled(Button)`
         border-color: #FFCC00;
         color: #FFCC00;
         background-color: transparent;
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        margin-bottom: 1rem;
     }
 `;
 

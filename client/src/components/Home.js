@@ -26,6 +26,13 @@ const Profile = styled.img`
         width: 80px;
         height: 80px;
     }
+
+
+    //Desktops and Laptops
+    @media only screen and (min-width: 1224px) {
+        width: 100px;
+        height: 100px;
+    }
 `;
 
 const StyledButton = styled(Button)`
@@ -54,7 +61,11 @@ const TypingText = styled.h1`
     @media only screen and (min-width: 321px) {
         font-size: 2rem;
     }
- 
+    
+    // Desktops and laptops
+    @media only screen and (min-width: 1224px) {
+        font-size: 2.5rem;
+    }
 `;
 
 class Home extends React.Component {

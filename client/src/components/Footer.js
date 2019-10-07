@@ -8,6 +8,10 @@ const FooterSection = styled(Container)`
     padding: 10rem 1.5rem;
     background-color: #293347;
     color: #fff;
+
+    @media only screen and (min-width: 320px)  and (max-width: 480px) {
+        padding: 10rem 1.5rem 2rem 1.5rem;
+    }
 `;
 
 class Footer extends React.Component {
