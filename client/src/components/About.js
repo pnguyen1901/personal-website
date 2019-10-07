@@ -29,6 +29,11 @@ const AboutHeading = styled.h2`
     @media ${device.mobileS} {
         font-size: 1.5rem;
     }
+
+    // Desktops and laptops
+    @media only screen and (min-width: 1224px) {
+        font-size: 2rem;
+    }
 `;
 
 class About extends React.Component {

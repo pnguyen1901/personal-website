@@ -9,7 +9,15 @@ const ExpContainer = styled(Container)`
 `;
 
 const Heading = styled.h2`
-    font-size: 1.5rem;
+    // Smartphones (portrait and landscape)
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+        font-size: 1.5rem;
+    }
+
+    // Desktops and laptops
+    @media only screen and (min-width: 1224px) {
+        font-size: 2rem;
+    }
 `;
 
 class Experience extends React.Component {
