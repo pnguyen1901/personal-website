@@ -15,15 +15,12 @@
   width: 100%;
   height: 100%;
   display: table;
+  height: 70vh;
 }
 
 .home-table-center {
   display: table-cell;
   vertical-align: middle;
-}
-
-.h-100vh {
-  height: 70vh;
 }
 
 
@@ -164,3 +161,25 @@ a.social-icon:hover {
   background: #f2f2f2;
   color: #c7c7c7;
 }
+
+/* Responsive Media Queries */
+
+/* Smartphones (landscape) */
+@media only screen and (min-width: 321px){
+  .home-table {
+    height: 100vh;
+  }
+
+  /* Smarphones (portrait) */
+@media only screen and (max-width: 320px){
+  .home-table {
+    height: 100vh;
+  }
+}
+
+  .exp-col,.exp-col-offset {
+    margin-left: 0;
+  }
+
+}
+

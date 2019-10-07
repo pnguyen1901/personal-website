@@ -8,12 +8,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import photo from '../images/circle-cropped.png';
 
-
 const Profile = styled.img`
     margin: 1rem;
     border-radius: 50%;
     width: 100px;
     height: 100px;
+
+
+    // Make the profile pic smaller in smartphone (portrait)
+    @media only screen and (max-width: 320px) {
+        width: 80px;
+        height: 80px;
+    }
+
+    // Smartphone (landscape)
+    @media only screen and (min-width: 321px) {
+        width: 80px;
+        height: 80px;
+    }
 `;
 
 const StyledButton = styled(Button)`
@@ -32,6 +44,18 @@ const StyledButton = styled(Button)`
     }
 `;
 
+const TypingText = styled.h1`
+    // Make the Typing text smaller in smartphone (portrait and landscape)
+    @media only screen and (min-width: 320px) and (max-width: 480px){
+        font-size: 2rem;
+    }
+
+    // Smartphone (landscape)
+    @media only screen and (min-width: 321px) {
+        font-size: 2rem;
+    }
+ 
+`;
 
 class Home extends React.Component {
     constructor (props) {
@@ -73,7 +97,7 @@ class Home extends React.Component {
           ])
         })
         return (
-            <div className="home-table h-100vh">
+            <div className="home-table">
                 <div className="home-table-center">
                         <Container>
                             <Row className="justify-content-center">
@@ -83,11 +107,11 @@ class Home extends React.Component {
                                         <div>
                                             <Profile src={photo} />
                                         </div>
-                                        <h1 className="header_title mb-0 mt-3">I Am 
+                                        <TypingText className="header_title mb-0 mt-3">I Am 
                                             <Typist key={uuid()} onTypingDone={() => this.forceUpdate()}>
                                                 {n}
                                             </Typist>
-                                        </h1>
+                                        </TypingText>
                                     </div>
                                     <StyledButton outline onClick={this.handleDownload}  color="secondary" className="btn-custom">Download Resume <FontAwesomeIcon icon="cloud-download-alt"/></StyledButton>{' '}
                                 </Col>

@@ -2,17 +2,14 @@ import React from 'react';
 import Fade from 'react-reveal/Fade';
 import { Container, Row, Col, Media} from 'reactstrap';
 import styled from 'styled-components';
-import AIGlogo from '../images/AIG-Logo.png';
 
-
-function getDuration(duration) {
-    const years = parseInt(duration /12);
-    const months = (duration > 12) ? duration % 12 : duration
-    return (years > 0 ? years + " year" + (years > 1? "s" : "") + " and " + months + " month" + (months > 1? "s": "") : months + " month" + (months> 1? "s": ""));
-}
 
 const ExpContainer = styled(Container)`
     padding: 0rem 1.5rem;
+`;
+
+const Heading = styled.h2`
+    font-size: 1.5rem;
 `;
 
 class Experience extends React.Component {
@@ -20,7 +17,7 @@ class Experience extends React.Component {
         return (
             <ExpContainer fluid>
                 <Row className="justify-content-center mb-4">
-                    <h2>Experience and Education</h2>
+                    <Heading>Experience {"&"} Education</Heading>
                 </Row>
                 <Row className="mt-4 align-items-center">
                     <Col lg="5" className="exp-col">
