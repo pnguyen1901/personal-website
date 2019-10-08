@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button,
         Modal, ModalHeader, ModalBody, ModalFooter,
-        Form, FormGroup, FormText, Label, Input, Row, Col} from 'reactstrap';
+        Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollableAnchor from 'react-scrollable-anchor';
