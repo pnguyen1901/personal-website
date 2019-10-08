@@ -5,7 +5,9 @@ import styled from 'styled-components';
 
 
 const ExpContainer = styled(Container)`
-    padding: 0rem 1.5rem;
+    padding: 0rem 5rem;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const Heading = styled.h2`
@@ -28,7 +30,7 @@ class Experience extends React.Component {
                     <Heading>Experience {"&"} Education</Heading>
                 </Row>
                 <Row className="mt-4 align-items-center">
-                    <Col lg="5" className="exp-col">
+                    <Col lg="5">
                         <Fade bottom cascade duration={2000}>
                             <div className="edu-exp">
                                 <div className="exp-box mt-4">
@@ -71,7 +73,7 @@ class Experience extends React.Component {
                             </div>
                         </Fade>
                     </Col>
-                    <Col lg="5" className="exp-col-offset">
+                    <Col lg="5" className="offset-lg-2">
                         <Fade bottom cascade duration={2000}>
                             <div className="edu-exp">
                                 <div className="exp-box mt-4">
