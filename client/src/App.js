@@ -112,7 +112,7 @@ class App extends Component {
           senderEmail: '',
           text: ''
       });
-      setTimeout(this.nestedmodaltoggle, 2000);
+      setTimeout(this.nestedmodaltoggle, 4000);
   };
 
   toggle() {
