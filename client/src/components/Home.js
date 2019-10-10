@@ -5,8 +5,9 @@ import Typist from 'react-typist';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ScrollableAnchor from 'react-scrollable-anchor';
 import photo from '../images/circle-cropped.png';
+import axios from 'axios';
+import download from 'downloadjs';
 
 const Profile = styled.img`
     margin: 1rem;
@@ -81,10 +82,25 @@ class Home extends React.Component {
 
     }
 
-    handleDownload() {
-        fetch('/download-resume')
-            .catch(err => console.log(err));
-            console.log('downloading file!');
+    handleDownload = async () => {
+        fetch('/download', {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/pdf"
+            }
+          })
+            .then(res => res.blob())
+            .then(response => {
+              //Create a Blob from the PDF Stream
+              console.log(response);
+              const file = new Blob([response], {
+                type: "application/pdf"
+              });
+              download(file, 'Phat-Nguyen-Resume.pdf');
+            })
+            .catch(error => {
+              console.log(error);
+            });
     };
 
     static propTypes = {
@@ -124,7 +140,8 @@ class Home extends React.Component {
                                             </Typist>
                                         </TypingText>
                                     </div>
-                                    <StyledButton outline onClick={this.handleDownload}  color="secondary" className="btn-custom">Download Resume <FontAwesomeIcon icon="cloud-download-alt"/></StyledButton>{' '}
+                                    <StyledButton outline onClick={ this.handleDownload
+                                    }  color="secondary" className="btn-custom">Download Resume <FontAwesomeIcon icon="cloud-download-alt"/></StyledButton>{' '}
                                 </Col>
                             </Row>
                         </Container>

@@ -1,23 +1,23 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
-
+const fs = require("fs");
 const app = express();
+path = require('path');
 
+
+// Pdf route that will serve pdf
+app.get("/download", (req, res) => {
+    var file = fs.createReadStream(path.join(__dirname, '/docs/Phat-Nguyen-Resume.pdf'));
+    file.pipe(res);
+  });
+
+
+// Set up app to send email using SendGrid
 app.use(cors());
 
 const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey('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');
-
-// get users info
-app.use('/api/users', (req, res) => {
-    res.json([
-        {id:1, username: "phat nguyen"},
-        {id:2, username: "trang khung"}
-    ])
-});
-
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // send email
 app.get('/send-email', (req, res) => {
@@ -25,11 +25,10 @@ app.get('/send-email', (req, res) => {
 
     // SendGrid Requirements
     const msg = {
-        to: 'phat.h.nguyen@hotmail.com',
-        from: senderEmail,
+        from: 'phat.h.nguyen@hotmail.com',
+        to: 'phatnguyen1901@gmail.com',
         subject: sender,
-        text: text,
-        html: `<strong>${text}</strong>`,
+        html: `<p>${senderEmail}</p><br><p>${text}</p>`
     }
 
 
@@ -37,6 +36,21 @@ app.get('/send-email', (req, res) => {
     sgMail.send(msg);
 });
 
+// send email - freelance project
+app.get('/send-emailfreelance', (req, res) => {
+    const { sender, senderEmail, budget, type, text } = req.query;
+
+    // SendGrid Requirements
+    const msgFreelance = {
+        from: 'phat.h.nguyen@hotmail.com',
+        to: 'phatnguyen1901@gmail.com',
+        subject: budget + '   ' + type,
+        html: `<p>${sender}</p><br><p>${senderEmail}</p><br><p>${text}</p>`
+    }
+
+    // Send Email
+    sgMail.send(msgFreelance);
+});
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static('client/build'));
