@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import Skills from './components/Skills';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faReact } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faCloudDownloadAlt, faMugHot, faHeart} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faCloudDownloadAlt, faMugHot, faHeart, faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button,
   Modal, ModalHeader, ModalBody, ModalFooter,
@@ -48,7 +48,7 @@ transition: 0.5;
 `;
 
 
-library.add(fab, faPaperPlane, faCloudDownloadAlt, faMugHot, faLinkedinIn, faGithub, faLinkedin, faHeart, faReact)
+library.add(fab, faPaperPlane, faCloudDownloadAlt, faMugHot, faLinkedinIn, faGithub, faLinkedin, faHeart, faReact, faChevronDown)
 
 class App extends Component {
   refHome = React.createRef();

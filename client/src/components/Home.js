@@ -6,7 +6,6 @@ import uuid from 'uuid';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import photo from '../images/circle-cropped.png';
-import axios from 'axios';
 import download from 'downloadjs';
 
 const Profile = styled.img`
@@ -140,8 +139,7 @@ class Home extends React.Component {
                                             </Typist>
                                         </TypingText>
                                     </div>
-                                    <StyledButton outline onClick={ this.handleDownload
-                                    }  color="secondary" className="btn-custom">Download Resume <FontAwesomeIcon icon="cloud-download-alt"/></StyledButton>{' '}
+                                    <StyledButton outline onClick={ this.handleDownload }  color="secondary" className="btn-custom">Download Resume <FontAwesomeIcon icon="cloud-download-alt"/></StyledButton>{' '}
                                 </Col>
                             </Row>
                         </Container>

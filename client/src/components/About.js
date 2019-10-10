@@ -3,6 +3,7 @@ import {Container, Row, Col} from 'reactstrap';
 import styled from 'styled-components';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { device } from './Device';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AboutContainer = styled(Container)`
     background-color: rgb(27, 59, 238);
@@ -39,7 +40,10 @@ const AboutHeading = styled.h2`
 class About extends React.Component {
     render() {
         return (
-                <AboutContainer fluid>
+                <AboutContainer className="about" fluid>
+                        <div className="right-on-top">
+                            <FontAwesomeIcon icon="chevron-down"/>
+                        </div>
                     <Row className="justify-content-center">
                         <Col lg="8">
                             <AboutText>Web interfaces should be intuitive and easy to use. My goal is to incorporate these fundamentals for every single project that I work on. As a full stack web developer, I help solve business problems by bringing front-end and back-end together for one unifying solution.</AboutText>

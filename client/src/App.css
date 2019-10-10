@@ -51,6 +51,21 @@
   transform: scaleX(1);
 }
 
+/* About Section */
+
+.about{
+  position: relative;
+  justify-items: center;
+}
+
+.right-on-top {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  top: -15px;
+  color: #666;
+}
 
 /* Experience & Education */
 
@@ -193,6 +208,10 @@ a.social-icon:hover {
   
   .exp-col-offset {
     margin-left: 120px;
+  }
+
+  .right-on-top {
+    display: none;
   }
 
 }
