@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import Skills from './components/Skills';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faReact } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faCloudDownloadAlt, faMugHot, faHeart, faChevronDown} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faCloudDownloadAlt, faMugHot, faHeart, faChevronDown, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import { faLinkedinIn, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button,
   Modal, ModalHeader, ModalBody, ModalFooter,
@@ -48,7 +48,7 @@ transition: 0.5;
 `;
 
 
-library.add(fab, faPaperPlane, faCloudDownloadAlt, faMugHot, faLinkedinIn, faGithub, faLinkedin, faHeart, faReact, faChevronDown)
+library.add(fab, faPaperPlane, faCloudDownloadAlt, faMugHot, faLinkedinIn, faGithub, faLinkedin, faHeart, faReact, faChevronDown, faCheckCircle)
 
 class App extends Component {
   refHome = React.createRef();
@@ -60,6 +60,7 @@ class App extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.modaltoggle = this.modaltoggle.bind(this);
+    this.nestedmodaltoggle = this.nestedmodaltoggle.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleScrollto = this.handleScrollto.bind(this);
@@ -67,6 +68,7 @@ class App extends Component {
     this.state = {
         isOpen: false,
         modal: false,
+        nestedmodal: false,
         email: {
             sender: '',
             senderEmail: '',
@@ -92,16 +94,25 @@ class App extends Component {
     })
   }
 
-  sendEmail() {
+  sendEmail = async () => {
       fetch(`/send-email?sender=${this.state.sender}&senderEmail=${this.state.senderEmail}&text=${this.state.text}`)
-          .catch(err => console.log(err));
+        .then( res => {
+            if(res.ok) {
+                console.log('email sent!');
+            } else {
+                console.log('failed to send email!')
+            }
+        })  
+        .catch(err => console.log(err));
       
       this.setState({
           modal: !this.state.modal,
+          nestedmodal: !this.state.nestedmodal,
           sender: '',
           senderEmail: '',
           text: ''
       });
+      setTimeout(this.nestedmodaltoggle, 2000);
   };
 
   toggle() {
@@ -123,6 +134,13 @@ class App extends Component {
 
       });
   };
+
+  nestedmodaltoggle = () => {
+      this.setState({
+          nestedmodal: !this.state.nestedmodal
+      })
+  }
+
   render() {
     return (
         <>
@@ -150,7 +168,7 @@ class App extends Component {
                 </Collapse>
             </Container>
             <Modal size="lg" isOpen={this.state.modal} toggle={this.modaltoggle} className={this.props.className}>
-                <ModalHeader class="no-border-bottom" toggle={this.modaltoggle}> How can I help you today?</ModalHeader>
+                <ModalHeader className="no-border-bottom" toggle={this.modaltoggle}> How can I help you today?</ModalHeader>
                 <ModalBody>
                     <Form>
                         <Row form>
@@ -178,6 +196,17 @@ class App extends Component {
                 <ModalFooter className="justify-content-center no-border-top">
                     <SubmitButton color="#0025FC" onClick={this.sendEmail} id="submit-btn" className="btn-custom" disabled={!(this.state.sender && this.state.senderEmail && this.state.text)}>Submit</SubmitButton>{' '}
                 </ModalFooter>
+            </Modal>
+            <Modal size="md" isOpen={this.state.nestedmodal} toggle={this.nestedmodaltoggle}>
+                <ModalBody>
+                    <div className="text-center">
+                        <div className="mb-2 center">
+                            <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
+                        </div>
+                        <h4>Thank you for reaching out!</h4>
+                        <p>You should receive a response within 24hours.</p>
+                    </div>
+                </ModalBody>
             </Modal>
         </FixedNavbar>
         <div className="App">
