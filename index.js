@@ -1,9 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require("fs");
+const enforce = require('express-sslify');
 const app = express();
 path = require('path');
 
+// Use enforce.HTTPS({ trustProtoHeader: true }) since you're behind Heroku's reverse proxy
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // Pdf route that will serve pdf
 app.get("/download", (req, res) => {

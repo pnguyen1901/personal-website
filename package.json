@@ -27,6 +27,7 @@
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-sslify": "^1.2.0",
     "mailgun-js": "^0.22.0"
   }
 }
