@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card, CardBody, CardTitle, CardText,
         Modal, ModalBody, ModalFooter, ModalHeader, Form, FormGroup, Label, Input } from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 const AdContainer = styled(Container)`
     margin-top: 10rem;
@@ -76,10 +77,12 @@ class Ads extends React.Component {
         this.modaltoggle = this.modaltoggle.bind(this);
         this.sendEmail = this.sendEmail.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.nestedmodaltoggle = this.nestedmodaltoggle.bind(this);
 
         this.state = {
             isOpen: false,
             modal: false,
+            nestedmodal: false,
             email: {
                 sender: '',
                 senderEmail: '',
@@ -99,6 +102,17 @@ class Ads extends React.Component {
 
     sendEmail = () => {
         fetch(`/send-emailfreelance?sender=${this.state.sender}&senderEmail=${this.state.senderEmail}&budget=${this.state.budget}&type=${this.state.type}&text=${this.state.text}`)
+            .then( res => {
+                if(res.ok){
+                    this.setState({
+                        nestedmodal: !this.state.nestedmodal
+                    });
+
+                    setTimeout(this.nestedmodaltoggle, 4000);
+                } else {
+                    console.log(res);
+                }
+            })
             .catch(err => console.log(err));
 
         this.setState({
@@ -121,6 +135,12 @@ class Ads extends React.Component {
             text: ''
         })
     }
+
+    nestedmodaltoggle = () => {
+        this.setState({
+            nestedmodal: !this.state.nestedmodal
+        })
+    };
 
     render() {
         return (
@@ -188,6 +208,17 @@ class Ads extends React.Component {
                     <ModalFooter className="justify-content-center no-border-top">
                         <SubmitButton color="#0025FC" onClick={this.sendEmail} id="submit-btn" className="btn-custom" disabled={!(this.state.sender && this.state.senderEmail && this.state.text)}>Submit</SubmitButton>{' '}
                     </ModalFooter>
+                </Modal>
+                <Modal size="md" isOpen={this.state.nestedmodal} toggle={this.nestedmodaltoggle}>
+                    <ModalBody>
+                        <div className="text-center">
+                            <div className="mb-2 center">
+                                <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
+                            </div>
+                            <h4>Thank you for reaching out!</h4>
+                            <p>You should receive a response within 24 hours.</p>
+                        </div>
+                    </ModalBody>
                 </Modal>
             </AdContainer>
         )

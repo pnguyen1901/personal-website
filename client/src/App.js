@@ -98,7 +98,10 @@ class App extends Component {
       fetch(`/send-email?sender=${this.state.sender}&senderEmail=${this.state.senderEmail}&text=${this.state.text}`)
         .then( res => {
             if(res.ok) {
-                console.log('email sent!');
+                this.setState({
+                    nestedmodal: !this.state.nestedmodal
+                });
+                setTimeout(this.nestedmodaltoggle, 4000);
             } else {
                 console.log('failed to send email!')
             }
@@ -107,12 +110,10 @@ class App extends Component {
       
       this.setState({
           modal: !this.state.modal,
-          nestedmodal: !this.state.nestedmodal,
           sender: '',
           senderEmail: '',
           text: ''
       });
-      setTimeout(this.nestedmodaltoggle, 4000);
   };
 
   toggle() {
@@ -204,7 +205,7 @@ class App extends Component {
                             <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
                         </div>
                         <h4>Thank you for reaching out!</h4>
-                        <p>You should receive a response within 24hours.</p>
+                        <p>You should receive a response within 24 hours.</p>
                     </div>
                 </ModalBody>
             </Modal>

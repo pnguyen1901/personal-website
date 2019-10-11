@@ -181,6 +181,10 @@ a.social-icon:hover {
   color: #c7c7c7;
 }
 
+.modal-open {
+  padding-right: 0px !important;
+}
+
 /* Responsive Media Queries */
 
 /* Smartphones (landscape) */

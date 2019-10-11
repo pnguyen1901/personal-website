@@ -25,15 +25,19 @@ app.get('/send-email', (req, res) => {
 
     // SendGrid Requirements
     const msg = {
-        from: 'phat.h.nguyen@hotmail.com',
-        to: 'phatnguyen1901@gmail.com',
+        from: process.env.SENDGRID_FROM,
+        to: process.env.SENDGRID_TO,
         subject: sender,
-        html: `<p>${senderEmail}</p><br><p>${text}</p>`
+        html: `<p>Contact Info: ${senderEmail}</p><p>Details: ${text}</p>`
     }
-
 
     // Send Email
     sgMail.send(msg);
+
+    // Return response
+    res.json(
+        {message: "email sent."}
+    )
 });
 
 // send email - freelance project
@@ -42,14 +46,19 @@ app.get('/send-emailfreelance', (req, res) => {
 
     // SendGrid Requirements
     const msgFreelance = {
-        from: 'phat.h.nguyen@hotmail.com',
-        to: 'phatnguyen1901@gmail.com',
+        from: process.env.SENDGRID_FROM,
+        to: process.env.SENDGRID_TO,
         subject: budget + '   ' + type,
-        html: `<p>${sender}</p><br><p>${senderEmail}</p><br><p>${text}</p>`
+        html: `<p>Contact Info: ${sender}</p><p>${senderEmail}</p><p>Details: ${text}</p>`
     }
 
     // Send Email
     sgMail.send(msgFreelance);
+
+    // Return response
+    res.json(
+        {message: "email sent."}
+    )
 });
 
 if (process.env.NODE_ENV === "production") {
