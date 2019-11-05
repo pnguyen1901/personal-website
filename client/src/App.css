@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+/* Dark them */
+
+.dark {
+  color: #dadada;
+  background: #1c2022;
+  min-height: 100%;
+}
+
+.bg-dark {
+  background: rgb(36, 40, 42);
+  color: #dadada;
+}
+
 /* TopBar */
 .brand {
   font-size: .75rem;
@@ -190,13 +203,13 @@ a.social-icon:hover {
 /* Smartphones (landscape) */
 @media only screen and (min-width: 321px){
   .home-table {
-    height: 100vh;
+    height: 90vh;
   }
 
   /* Smarphones (portrait) */
 @media only screen and (max-width: 320px){
   .home-table {
-    height: 100vh;
+    height: 90vh;
   }
 }
   .exp-col,.exp-col-offset {
