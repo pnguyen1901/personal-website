@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import photo from '../images/circle-cropped.png';
 import download from 'downloadjs';
+import { ThemeConsumer } from '../context/theme';
 
 const Profile = styled.img`
     margin: 1rem;
@@ -123,8 +124,10 @@ class Home extends React.Component {
           ])
         })
         return (
-            <div className="home-table">
-                <div className="home-table-center">
+            <ThemeConsumer>
+                { ({ theme, toggletheme }) => (
+                <div className="home-table">
+                    <div className="home-table-center">
                         <Container>
                             <Row className="justify-content-center">
                                 <Col>
@@ -143,8 +146,10 @@ class Home extends React.Component {
                                 </Col>
                             </Row>
                         </Container>
+                    </div>
                 </div>
-            </div>
+                )}
+            </ThemeConsumer>
         )
     }
 }

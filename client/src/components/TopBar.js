@@ -4,7 +4,7 @@ import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, N
         Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ScrollableAnchor from 'react-scrollable-anchor';
+import { Link } from 'react-router-dom';
 
 const FixedNavbar = styled(Navbar)`
     box-shadow: 0 2px 5px 0 rgb(233,240,243,0.5);
@@ -107,13 +107,16 @@ class TopBar extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto align-items-center" navbar>
                             <NavItem>
-                                <NavLink href="#home">Home</NavLink>
+                                <NavLink href=""><Link to='/'>Home</Link></NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="#about">About</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/Experience">Experience</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href=""><Link to='/blog'>Blog</Link></NavLink>
                             </NavItem>
                             <NavItem>
                                 <StyledButton onClick={this.modaltoggle} outline color="secondary" className="btn-custom"><FontAwesomeIcon icon="paper-plane"/> Let's Chat</StyledButton>{' '}

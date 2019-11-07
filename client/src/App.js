@@ -16,6 +16,8 @@ import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, N
   Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ThemeProvider, ThemeConsumer } from '../src/context/theme';
+import { Link } from 'react-router-dom';
 
 const FixedNavbar = styled(Navbar)`
 box-shadow: 0 2px 5px 0 rgb(233,240,243,0.5);
@@ -73,7 +75,13 @@ class App extends Component {
             sender: '',
             senderEmail: '',
             text: ''
-          }
+          },
+        theme: 'light',
+        toggletheme: () => {
+            this.setState( ({theme}) => ({
+                theme: theme === 'light' ? 'dark' : 'light'
+            }))
+        }
         };
   }
 
@@ -144,72 +152,84 @@ class App extends Component {
 
   render() {
     return (
+        <ThemeProvider value={this.state}>
+        <div className={this.state.theme}>
         <>
-          <FixedNavbar fixed="top" light expand="md">
-            <Container>
-                <NavbarBrand href="/">
-                    <div className="brand">PN</div>
-                </NavbarBrand>
-                <NavbarToggler onClick={this.toggle}/>
-                <Collapse isOpen={this.state.isOpen} navbar>
-                    <Nav className="ml-auto align-items-center" navbar>
-                        <NavItem>
-                            <NavLink href="#" onClick={ () => {this.handleScrollto(this.refHome)}}>Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#" onClick={ () => {this.handleScrollto(this.refAbout)}}>About</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#" onClick={ () => {this.handleScrollto(this.refExperience)} }>Experience</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <StyledButton onClick={this.modaltoggle} outline color="secondary" className="btn-custom"><FontAwesomeIcon icon="paper-plane"/> Let's Chat</StyledButton>{' '}
-                        </NavItem>
-                    </Nav>
-                </Collapse>
-            </Container>
-            <Modal size="lg" isOpen={this.state.modal} toggle={this.modaltoggle} className={this.props.className}>
-                <ModalHeader className="no-border-bottom" toggle={this.modaltoggle}> How can I help you today?</ModalHeader>
-                <ModalBody>
-                    <Form>
-                        <Row form>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="Name">Name</Label>
-                                    <Input value={this.state.sender} onChange={this.handleChange} type="name" name="sender" id="name" placeholder="Your Full Name"/>
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="Email">Email</Label>
-                                    <Input value={this.state.senderEmail} onChange={this.handleChange} type="email" name="senderEmail" id="email" placeholder="Your Email Address"/>
-                                </FormGroup>
-                            </Col>
-                            <Col sm={12}>
-                                <FormGroup>
-                                    <Label for="Details">Questions</Label>
-                                    <Input value={this.state.text} onChange={this.handleChange} type="textarea" rows="10" name="text" placeholder="I'd love to hear more about your business problems!"/>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                    </Form>
-                </ModalBody>
-                <ModalFooter className="justify-content-center no-border-top">
-                    <SubmitButton color="#0025FC" onClick={this.sendEmail} id="submit-btn" className="btn-custom" disabled={!(this.state.sender && this.state.senderEmail && this.state.text)}>Submit</SubmitButton>{' '}
-                </ModalFooter>
-            </Modal>
-            <Modal size="md" isOpen={this.state.nestedmodal} toggle={this.nestedmodaltoggle}>
-                <ModalBody>
-                    <div className="text-center">
-                        <div className="mb-2 center">
-                            <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
-                        </div>
-                        <h4>Thank you for reaching out!</h4>
-                        <p>You should receive a response within 24 hours.</p>
-                    </div>
-                </ModalBody>
-            </Modal>
-        </FixedNavbar>
+            <ThemeConsumer>
+                { ({theme}) => (
+                    <div className={`bg-${theme}`}>
+                        <FixedNavbar fixed="top" light expand="md">
+                        <Container>
+                            <NavbarBrand href="/">
+                                <div className="brand">PN</div>
+                            </NavbarBrand>
+                            <NavbarToggler onClick={this.toggle}/>
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="ml-auto align-items-center" navbar>
+                                    <NavItem>
+                                        <NavLink href="" onClick={ () => {this.handleScrollto(this.refHome)}}><Link to='/'>Home</Link></NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#" onClick={ () => {this.handleScrollto(this.refAbout)}}>About</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="#" onClick={ () => {this.handleScrollto(this.refExperience)} }>Experience</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink href="" ><Link to='/blog'>Blog</Link></NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <StyledButton onClick={this.modaltoggle} outline color="secondary" className="btn-custom"><FontAwesomeIcon icon="paper-plane"/> Let's Chat</StyledButton>{' '}
+                                    </NavItem>
+                                </Nav>
+                            </Collapse>
+                        </Container>
+                        <Modal size="lg" isOpen={this.state.modal} toggle={this.modaltoggle} className={this.props.className}>
+                            <ModalHeader className="no-border-bottom" toggle={this.modaltoggle}> How can I help you today?</ModalHeader>
+                            <ModalBody>
+                                <Form>
+                                    <Row form>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Label for="Name">Name</Label>
+                                                <Input value={this.state.sender} onChange={this.handleChange} type="name" name="sender" id="name" placeholder="Your Full Name"/>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col md={6}>
+                                            <FormGroup>
+                                                <Label for="Email">Email</Label>
+                                                <Input value={this.state.senderEmail} onChange={this.handleChange} type="email" name="senderEmail" id="email" placeholder="Your Email Address"/>
+                                            </FormGroup>
+                                        </Col>
+                                        <Col sm={12}>
+                                            <FormGroup>
+                                                <Label for="Details">Questions</Label>
+                                                <Input value={this.state.text} onChange={this.handleChange} type="textarea" rows="10" name="text" placeholder="I'd love to hear more about your business problems!"/>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
+                                </Form>
+                            </ModalBody>
+                            <ModalFooter className="justify-content-center no-border-top">
+                                <SubmitButton color="#0025FC" onClick={this.sendEmail} id="submit-btn" className="btn-custom" disabled={!(this.state.sender && this.state.senderEmail && this.state.text)}>Submit</SubmitButton>{' '}
+                            </ModalFooter>
+                        </Modal>
+                        <Modal size="md" isOpen={this.state.nestedmodal} toggle={this.nestedmodaltoggle}>
+                            <ModalBody>
+                                <div className="text-center">
+                                    <div className="mb-2 center">
+                                        <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
+                                    </div>
+                                    <h4>Thank you for reaching out!</h4>
+                                    <p>You should receive a response within 24 hours.</p>
+                                </div>
+                            </ModalBody>
+                        </Modal>
+                    </FixedNavbar>
+                </div>
+
+                )}
+            </ThemeConsumer>
         <div className="App">
           <div ref={this.refHome}>
             <Home />
@@ -225,6 +245,8 @@ class App extends Component {
           <Footer/>
         </div>
       </>
+      </div>
+      </ThemeProvider>
     )
   }
 }
