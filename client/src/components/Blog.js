@@ -5,18 +5,30 @@ import BlogItem from '../components/blog/BlogItem';
 import DropDown from '../components/blog/DropDown';
 import { Container, Row, Col } from 'reactstrap';
 import styled from 'styled-components';
-
+import portrait from '../images/portrait.jpg';
 
 const BlogContainer = styled(Container)`
-
+    margin-top: 2rem;
 
 `
 
-const HeaderContainer = styled(Container)`
-    margin-top: 10rem;
+const HeaderContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2em;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 5rem;
     justify-content: center;
     text-align: center;
-    border-bottom: 1px solid rgba(0,0,0, 0.15);
+
+`
+
+const HeaderImg = styled.img`
+    height: 350px;
+    width: 270px;
+    box-shadow: 5px 10px 10px rgba(0,0,0,1);
+    border-radius: 10px;
 `
 
 export default class Blog extends  React.Component {
@@ -48,31 +60,33 @@ export default class Blog extends  React.Component {
         return (
             <>
             <TopBar/>
-            <HeaderContainer fluid>
-                <Row>
-                    <Col xs="12">
-                        <h3>This is a Blog page</h3>
+            <HeaderContainer className="blog-header-container">
+                <div className="text-align-right">
+                    <HeaderImg src={portrait} />
+                </div>
+                <div className="text-align-left">
+                    <h2>Welcome to my blog!</h2>
+                    <p>Throughout my career, I have learned and benefited a lot from the online community. I wanted to give back and help others who I was once in their shoes trying to get into the web developer industry.</p>
+                    <p>This is also an outlet for people to get to know more about me.</p>
+                </div>
+            </HeaderContainer>
+            <div>
+
+            </div>
+            <BlogContainer>
+                <Row className="justify-content-center">
+                    <Col xs="8">
+                        <div className="pull-left topic-dropdown">
+                            <DropDown/>
+                        </div>
+                        {
+                            this.state.posts.map( ({fields}, i ) => 
+                                <BlogItem key={i} {...fields} />
+                            )
+                        }
                     </Col>
                 </Row>
-            </HeaderContainer>
-            <div className="home-table">
-                <div className="home-table-center">
-                    <BlogContainer>
-                        <Row className="justify-content-center">
-                            <Col xs="8">
-                                <div className="pull-left">
-                                    <DropDown/>
-                                </div>
-                                {
-                                    this.state.posts.map( ({fields}, i ) => 
-                                        <BlogItem key={i} title={fields.title} content={fields.content} />
-                                    )
-                                }
-                            </Col>
-                        </Row>
-                    </BlogContainer>
-                </div>
-            </div>
+            </BlogContainer>
             </>
         )
     }

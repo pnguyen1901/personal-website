@@ -1,6 +1,8 @@
 import React from 'react';
 import { Media } from 'reactstrap';
-
+import * as Markdown from 'react-markdown'
+import moment from 'react-moment';
+import Moment from 'react-moment';
 
 export default class BlogItem extends React.Component {
     constructor(props){
@@ -9,20 +11,18 @@ export default class BlogItem extends React.Component {
 
     render() {
         return(
-            <Media className="blog-card" href="#">
-                <Media left href="#">
+            <Media className="blog-card" href={this.props.path}>
+                <Media left >
                     <Media object />
                 </Media>
                 <Media body>
                     <Media heading>
-                        {this.props.title}
+                        <p>{this.props.title} <small className="opacity-small-text"><Moment format="MMM DD, YYYY">{this.props.date}</Moment> &middot; {this.props.readingTime} read</small></p>
                     </Media>
-                    {this.props.content}
+                    <Markdown source={this.props.content}/>
                 </Media>
             </Media>
-
-                
-                
+               
         )
     }
 }
