@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import placeholder from '../../images/placeholder.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ReadMore = styled(Link)`
     text-decoration: none;
@@ -38,12 +39,18 @@ export default class BlogItem extends React.Component {
                         <small className="opacity-small-text"><Moment format="MMM DD, YYYY">{this.props.date}</Moment> &middot; {this.props.readingTime} read</small>
                     </Media>
                     <Markdown source={this.props.content}/>
-                    <div className="read-more-button">
-                        <ReadMore to={{
-                            pathname: `/blog${this.props.path}`,
-                            state: this.props
-                        }}>Read More</ReadMore>
+                    <div class="nav-blog-item">
+                        <div className="like-button">
+                            <FontAwesomeIcon icon={"thumbs-up"}/>
+                        </div>
+                        <div className="read-more-button">
+                            <ReadMore to={{
+                                pathname: `/blog${this.props.path}`,
+                                state: this.props
+                            }}>Read More</ReadMore>
+                        </div>
                     </div>
+
                 </Media>
             </Media>
                

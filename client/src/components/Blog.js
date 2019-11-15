@@ -6,6 +6,13 @@ import DropDown from '../components/blog/DropDown';
 import { Container, Row, Col } from 'reactstrap';
 import styled from 'styled-components';
 import portrait from '../images/portrait.png';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+library.add( faThumbsUp );
+
+
+
 
 const BlogContainer = styled(Container)`
     margin-top: 2rem;

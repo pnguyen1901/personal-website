@@ -266,8 +266,15 @@ span.middle-dot {
   content: "\00B7";
 }
 
+
+.nav-blog-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
 .read-more-button {
-  margin: 10px;
+  margin: 10px 0 10px 0;
+  justify-self: end;
 }
 
 .media-image {
