@@ -277,6 +277,11 @@ span.middle-dot {
   justify-self: end;
 }
 
+.like-button {
+  opacity: .5;
+  align-self: center;
+}
+
 .media-image {
   border-radius: 50%;
   margin: 0 1em 0 1em;

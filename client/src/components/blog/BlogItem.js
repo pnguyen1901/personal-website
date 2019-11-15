@@ -41,7 +41,7 @@ export default class BlogItem extends React.Component {
                     <Markdown source={this.props.content}/>
                     <div class="nav-blog-item">
                         <div className="like-button">
-                            <FontAwesomeIcon icon={"thumbs-up"}/>
+                            <FontAwesomeIcon icon={"thumbs-up"} size="lg"/>
                         </div>
                         <div className="read-more-button">
                             <ReadMore to={{
