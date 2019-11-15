@@ -5,7 +5,7 @@ import BlogItem from '../components/blog/BlogItem';
 import DropDown from '../components/blog/DropDown';
 import { Container, Row, Col } from 'reactstrap';
 import styled from 'styled-components';
-import portrait from '../images/portrait.jpg';
+import portrait from '../images/portrait.png';
 
 const BlogContainer = styled(Container)`
     margin-top: 2rem;
@@ -27,8 +27,7 @@ const HeaderContainer = styled.div`
 const HeaderImg = styled.img`
     height: 350px;
     width: 270px;
-    box-shadow: 5px 10px 10px rgba(0,0,0,1);
-    border-radius: 10px;
+
 `
 
 export default class Blog extends  React.Component {

@@ -266,6 +266,15 @@ span.middle-dot {
   content: "\00B7";
 }
 
+.read-more-button {
+  margin: 10px;
+}
+
+.media-image {
+  border-radius: 50%;
+  margin: 0 1em 0 1em;
+}
+
 
 /* Responsive Media Queries */
 
