@@ -4,7 +4,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import  { composeWithDevTools } from 'redux-devtools-extension';
 
-export function configureStore(initialState) {
+export function configureStore() {
     return createStore(
         rootReducer,
         composeWithDevTools(

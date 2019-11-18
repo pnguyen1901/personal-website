@@ -12,6 +12,7 @@ export function loadBlog(){
     return dispatch =>
         client.getEntries()
         .then( ({items}) => {
+            console.log(items)
             dispatch(actions.loadBlogSuccess(items))
         })
         .catch(error)
