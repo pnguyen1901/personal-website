@@ -8,12 +8,22 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+// Redux Store
+import { Provider } from 'react-redux';
+import { configureStore } from './store';
+import { loadBlog } from './store/Blog';
+
+const store = configureStore()
+store.dispatch(loadBlog())
+
 ReactDOM.render((
-            <Router>
-                <Route exact path='/' component={App}/>
-                <Route exact path='/blog' component={Blog}/>
-                <Route path='/blog/:blogPost' component={BlogPost}/>
-            </Router>
+            <Provider store={store}>
+                <Router>
+                    <Route exact path='/' component={App}/>
+                    <Route exact path='/blog' component={Blog}/>
+                    <Route path='/blog/:blogPost' component={BlogPost}/>
+                </Router>
+            </Provider>
             ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

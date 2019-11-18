@@ -8,10 +8,9 @@ import styled from 'styled-components';
 import portrait from '../images/portrait.png';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { connect } from 'react-redux';
 
 library.add( faThumbsUp );
-
-
 
 
 const BlogContainer = styled(Container)`
@@ -34,59 +33,58 @@ const HeaderContainer = styled.div`
 const HeaderImg = styled.img`
     height: 350px;
     width: 270px;
-
+    border-radius: 5px;
 `
 
-export default class Blog extends  React.Component {
-    constructor(props) {
-        super(props);
+class Blog extends  React.Component {
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            posts: []
-        }
+    //     this.state = {
+    //         posts: []
+    //     }
 
-        this.client = contentful.createClient({
-            space:'2iy38u78l3ky',
-            accessToken: 'QJo1bMeHQNDDnxSA9P5pSzVyhORAoOMbQnBvhTbvySI',
-        })
+    //     this.client = contentful.createClient({
+    //         space:'2iy38u78l3ky',
+    //         accessToken: 'QJo1bMeHQNDDnxSA9P5pSzVyhORAoOMbQnBvhTbvySI',
+    //     })
 
-    }
-    componentDidMount(){
-        this.fetchPosts().then(this.setPosts);
-    }
+    // }
+    // componentDidMount(){
+    //     this.fetchPosts().then(this.setPosts);
+    // }
 
-    fetchPosts = () => this.client.getEntries();
-    setPosts = (response) => {
-        this.setState({
-            posts: response.items
-        })
-    }
+    // fetchPosts = () => this.client.getEntries();
+    // setPosts = (response) => {
+    //     this.setState({
+    //         posts: response.items
+    //     })
+    // }
 
     render(){
         return (
             <>
             <TopBar/>
-            <HeaderContainer className="blog-header-container">
-                <div className="text-align-right">
-                    <HeaderImg src={portrait} />
-                </div>
-                <div className="text-align-left">
-                    <h2>Welcome to my blog!</h2>
-                    <p>Throughout my career, I have learned and benefited a lot from the online community. I wanted to give back and help others who I was once in their shoes trying to get into the web developer industry.</p>
-                    <p>This is also an outlet for people to get to know more about me.</p>
-                </div>
-            </HeaderContainer>
-            <div>
-
-            </div>
+            {/* <HeaderContainer className="blog-header-container">
+            </HeaderContainer> */}
             <BlogContainer>
                 <Row className="justify-content-center">
                     <Col xs="8">
+                        <div class="flex-container">
+                            <div className="blog-page-portrait">
+                                <HeaderImg src={portrait} />
+                            </div>
+                            <div className="blog-page-title">
+                                <h2>Welcome to my blog!</h2>
+                                <p>Throughout my career, I have learned and benefited a lot from the online community. I wanted to give back and help others who I was once in their shoes trying to get into the web development.</p>
+                                <p>This is also an outlet for people to get to know more about me.</p>
+                            </div>
+                        </div>
                         <div className="pull-left topic-dropdown">
                             <DropDown/>
                         </div>
                         {
-                            this.state.posts.map( ({fields}, i ) => 
+                            this.props.blog.posts.map( ({fields}, i ) => 
                                 <BlogItem key={i} {...fields} />
                             )
                         }
@@ -97,3 +95,11 @@ export default class Blog extends  React.Component {
         )
     }
 }
+
+function mapStateToProps(state, ownProps){
+    return {
+        blog: state.blog
+    }
+}
+
+export default connect(mapStateToProps)(Blog)

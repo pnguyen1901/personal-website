@@ -213,6 +213,13 @@ a.social-icon:hover {
 
 /* Blog */
 
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  margin: 4rem 0 1rem 0; 
+}
+
 .blog-header-container div {
   margin: 2em 0 2em 0;
 }
@@ -245,12 +252,14 @@ a.social-icon:hover {
 }
 
 
-.text-align-right {
-  text-align: right;
+.blog-page-portrait {
+  margin: 20px;
 }
 
-.text-align-left {
-  text-align: left;
+.blog-page-title {
+  margin: 20px;
+  align-self: center;
+  justify-self: center;
 }
 
 .text-bold {
