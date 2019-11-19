@@ -21,6 +21,12 @@ const ReadMore = styled(Link)`
     }
 `;
 
+const Img = styled.img`
+    height: 250px;
+    width: 100%;
+    margin: 5px 0 10px 0;
+`;
+
 
 export default class BlogItem extends React.Component {
     constructor(props){
@@ -38,7 +44,8 @@ export default class BlogItem extends React.Component {
                         <div>{this.props.title}</div>
                         <small className="opacity-small-text"><Moment format="MMM DD, YYYY">{this.props.date}</Moment> &middot; {this.props.readingTime} read</small>
                     </Media>
-                    <Markdown source={this.props.content}/>
+                    <Img src={`https:${this.props.photo.fields.file.url}`} alt="black and gray computer on a surface"/>
+                    <Markdown source={this.props.content.split(" ").slice(0,50).join(" ").concat('...')}/>
                     <div class="nav-blog-item">
                         <div className="like-button">
                             <FontAwesomeIcon icon={"thumbs-up"} size="lg"/>

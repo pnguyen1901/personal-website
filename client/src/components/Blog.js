@@ -69,7 +69,7 @@ class Blog extends  React.Component {
             </HeaderContainer> */}
             <BlogContainer>
                 <Row className="justify-content-center">
-                    <Col xs="8">
+                    <Col xs="9">
                         <div class="flex-container">
                             <div className="blog-page-portrait">
                                 <HeaderImg src={portrait} />
