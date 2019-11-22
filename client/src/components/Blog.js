@@ -3,6 +3,7 @@ import * as contentful from 'contentful';
 import TopBar from '../components/TopBar';
 import BlogItem from '../components/blog/BlogItem';
 import DropDown from '../components/blog/DropDown';
+import Footer from '../components/blog/blog_page/Footer';
 import { Container, Row, Col } from 'reactstrap';
 import styled from 'styled-components';
 import portrait from '../images/portrait.png';
@@ -91,6 +92,10 @@ class Blog extends  React.Component {
                     </Col>
                 </Row>
             </BlogContainer>
+            <div>
+                <Footer/>
+            </div>
+
             </>
         )
     }

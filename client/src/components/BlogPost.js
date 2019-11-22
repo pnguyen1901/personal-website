@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './blog/blog_page/NavBar';
-
+import Content from './blog/blog_page/Content';
 
 const BlogPost = (props) => {
     
@@ -10,6 +10,7 @@ const BlogPost = (props) => {
             <div className="flex-container">
                 {props.location.state.content}
             </div>
+            <Content {...props.location.state}/>
         </>
     )
 

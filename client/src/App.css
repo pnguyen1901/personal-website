@@ -211,7 +211,7 @@ a.social-icon:hover {
 
 
 
-/* Blog */
+/* Blog Site page */
 
 
 .flex-container {
@@ -298,6 +298,27 @@ span.middle-dot {
 .media-image {
   border-radius: 50%;
   margin: 0 1em 0 1em;
+}
+
+/* Blog Post Page */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 800px 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  margin: 0 auto;
+  grid-template-areas: 
+  ". post-title "
+  ". p-title-image ";
+}
+
+.post-title {
+  grid-area: post-title;
+  max-height: 200px;
+}
+
+.p-title-image {
+  grid-area: p-title-image;
 }
 
 

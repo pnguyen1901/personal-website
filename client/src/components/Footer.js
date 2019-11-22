@@ -5,7 +5,8 @@ import styled from 'styled-components';
 
 const FooterSection = styled(Container)`
     margin-top: 2rem;
-    padding: 10rem 1.5rem;
+    height: 20rem;
+    padding: 1.5rem 1.5rem;
     background-color: #293347;
     color: #fff;
 
@@ -18,9 +19,9 @@ class Footer extends React.Component {
     render() {
         return (
                 <FooterSection fluid>
-                    <Row>
-                        <Col lg="12" className="justify-content-center">
-                            <div>
+                    <Row className="h-100">
+                        <Col lg="12" className="justify-content-center align-self-center">
+                            <div className="mt-4">
                                 <p> 2019 &copy; Phat Nguyen. Made with <span><FontAwesomeIcon color="#F782AC" icon="heart"/></span></p>
                                 <p> Built with React.JS <span><FontAwesomeIcon color="#5DD4F4" size="2x" icon={['fab', 'react']}/></span></p>
                             </div>
