@@ -250,11 +250,16 @@ a.social-icon:hover {
   transition: 0.5s;
   color: #212529;
   text-decoration: none;
+
 }
 
 .blog-card:hover {
   box-shadow: 0px 5px 8px 5px rgba(233,240,243,1);
   text-decoration: none;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-property: transform;
+  transform: scale(1.03);
 }
 
 .media-body {

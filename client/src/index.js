@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from './store';
 import { loadBlog } from './store/Blog';
+import ScrollToTop from './components/ScrollToTop';
 
 const store = configureStore()
 store.dispatch(loadBlog())
@@ -19,9 +20,11 @@ store.dispatch(loadBlog())
 ReactDOM.render((
             <Provider store={store}>
                 <Router>
-                    <Route exact path='/' component={App}/>
-                    <Route exact path='/blog' component={Blog}/>
-                    <Route path='/blog/:blogPost' component={BlogPost}/>
+                    <ScrollToTop>
+                        <Route exact path='/' component={App}/>
+                        <Route exact path='/blog' component={Blog}/>
+                        <Route path='/blog/:blogPost' component={BlogPost}/>
+                    </ScrollToTop>
                 </Router>
             </Provider>
             ), document.getElementById('root'));
