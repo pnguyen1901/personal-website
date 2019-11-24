@@ -306,11 +306,9 @@ span.middle-dot {
   display: flex;
   justify-content: center;
   width: 100%;
-  position: fixed;
-  top: 64px;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-top: 2rem;
+  padding-top: 5rem;
   margin: auto;
   flex-direction: row;
 }
@@ -321,6 +319,22 @@ span.middle-dot {
   display: flex;
   flex-direction: column;
 }
+
+.backToBlog {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 0 1rem 0;
+}
+
+.backToBlog a, .backToBlog a svg {
+  color: #212529;
+}
+
+.backToBlog a:hover, .backToBlog a svg:hover {
+  color: #212529;
+  text-decoration: none;
+}
+
 
 .post-title {
   text-align: start;

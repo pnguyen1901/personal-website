@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Container, Col, Row } from 'reactstrap';
 import Moment from 'react-moment';
 import * as Markdown from 'react-markdown';
+import {FaRegArrowAltCircleLeft} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Img = styled.img`
     height: 250px;
@@ -15,6 +17,9 @@ const Content = (props) => {
     return (
         <div className="wrapper">
             <div className="content">
+                <div className="backToBlog">
+                    <Link to='/blog'><FaRegArrowAltCircleLeft className="mr-2" size={32}/><span>Back to Blog Page</span></Link>
+                </div>
                 <div className="post-title">
                     <h2>{props.title}</h2>
                     <small><Moment format="MMMM DD, YYYY">{props.date}</Moment></small>
