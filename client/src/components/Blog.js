@@ -76,7 +76,7 @@ class Blog extends  React.Component {
                                 <HeaderImg src={portrait} />
                             </div>
                             <div className="blog-page-title">
-                                <h2>Welcome to my blog!</h2>
+                                <h2 className="greetings">Welcome to my blog</h2>
                                 <p>Throughout my career, I have learned and benefited a lot from the online community. I wanted to give back and help others who I was once in their shoes trying to get into the web development.</p>
                                 <p>This is also an outlet for people to get to know more about me.</p>
                             </div>

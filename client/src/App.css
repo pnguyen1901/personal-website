@@ -224,6 +224,22 @@ a.social-icon:hover {
   margin: 2em 0 2em 0;
 }
 
+.greetings {
+  position: relative;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.greetings::after {
+  position: absolute;
+  content: '';
+  height: 2px;
+  bottom: -4px;
+  background-color: #0025FC;
+  left: 0;
+  width: 100%;
+}
+
 
 .blog-card {
   margin: 20px 20px 40px 20px;
@@ -323,15 +339,35 @@ span.middle-dot {
 .backToBlog {
   display: flex;
   flex-direction: row;
-  padding: 1rem 0 1rem 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: fit-content;
+  position: relative;
+}
+
+.backToBlog::before {
+  position: absolute;
+  content: '';
+  height: 2px;
+  bottom: -2px;
+  background-color: #0025FC;
+  width: 0;
+  right: 0;
+  transition-duration: 420ms;
+  transition-property: width;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.4);
+}
+
+.backToBlog:hover::before {
+  width: 100%;
 }
 
 .backToBlog a, .backToBlog a svg {
-  color: #212529;
+  color: #0025FC;
 }
 
 .backToBlog a:hover, .backToBlog a svg:hover {
-  color: #212529;
+  color: #0025FC;
   text-decoration: none;
 }
 
