@@ -7,9 +7,6 @@ const BlogPost = (props) => {
     return (
         <>
             <NavBar/>
-            <div className="flex-container">
-                {props.location.state.content}
-            </div>
             <Content {...props.location.state}/>
         </>
     )

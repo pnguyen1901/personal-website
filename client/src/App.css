@@ -303,22 +303,37 @@ span.middle-dot {
 /* Blog Post Page */
 
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 800px 1fr;
-  grid-auto-rows: minmax(100px, auto);
-  margin: 0 auto;
-  grid-template-areas: 
-  ". post-title "
-  ". p-title-image ";
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  top: 64px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  margin: auto;
+  flex-direction: row;
+}
+
+
+.content {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
 }
 
 .post-title {
-  grid-area: post-title;
-  max-height: 200px;
+  text-align: start;
 }
 
 .p-title-image {
-  grid-area: p-title-image;
+  display: flex;
+}
+
+.post-content {
+  display: flex;
+  text-align: start;
+  flex-direction: column;
 }
 
 

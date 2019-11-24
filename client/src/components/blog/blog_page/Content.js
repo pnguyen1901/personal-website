@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Container, Col, Row } from 'reactstrap';
+import Moment from 'react-moment';
+import * as Markdown from 'react-markdown';
 
 const Img = styled.img`
     height: 250px;
@@ -12,13 +14,20 @@ const Img = styled.img`
 const Content = (props) => {
     return (
         <div className="wrapper">
-            <div className="post-title">
-                {props.title}
-            </div>
-            <div className="p-title-image">
-                <Img src={`https:${props.photo.fields.file.url}`} alt="black and gray computer on a surface"/>
+            <div className="content">
+                <div className="post-title">
+                    <h2>{props.title}</h2>
+                    <small><Moment format="MMMM DD, YYYY">{props.date}</Moment></small>
+                </div>
+                <div className="p-title-image">
+                    <Img src={`https:${props.photo.fields.file.url}`} alt="black and gray computer on a surface"/>
+                </div>
+                <div className="post-content">
+                    <Markdown source={props.content} />
+                </div>
             </div>
         </div>
+
     )
 }
 
