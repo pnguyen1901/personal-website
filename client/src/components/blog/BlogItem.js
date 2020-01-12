@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import placeholder from '../../images/placeholder.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaHeart, FaThumbsUp } from 'react-icons/fa';
 
 const ReadMore = styled(Link)`
     text-decoration: none;
@@ -31,6 +31,32 @@ const Img = styled.img`
 export default class BlogItem extends React.Component {
     constructor(props){
         super(props)
+
+        this.state = {
+            like: 0,
+            love: 0
+        }
+
+        this.likeIncrement = this.likeIncrement.bind(this);
+        this.loveIncrement = this.loveIncrement.bind(this);
+    }
+
+    likeIncrement(event) {
+        event.preventDefault();
+        this.setState( (prevState) => {
+            return {
+                like: prevState.like + 1
+            }
+        } )
+    }
+
+    loveIncrement(event) {
+        event.preventDefault();
+        this.setState( (prevState) => {
+            return {
+                love: prevState.love + 1
+            }
+        } )
     }
 
     render() {
@@ -42,13 +68,20 @@ export default class BlogItem extends React.Component {
                 <Media body>
                     <Media heading>
                         <div>{this.props.title}</div>
-                        <small className="opacity-small-text"><Moment format="MMM DD, YYYY">{this.props.date}</Moment> &middot; {this.props.readingTime} read</small>
+                        <small className="opaced-small-text"><Moment format="MMM DD, YYYY">{this.props.date}</Moment> &middot; {this.props.readingTime} read</small>
                     </Media>
                     <Img src={`https:${this.props.photo.fields.file.url}`} alt="black and gray computer on a surface"/>
                     <Markdown source={this.props.content.split(" ").slice(0,50).join(" ").concat('...')}/>
                     <div class="nav-blog-item">
-                        <div className="like-button">
-                            <FontAwesomeIcon icon={"thumbs-up"} size="lg"/>
+                        <div >
+                            <a href="" className="love-button">
+                                <FaHeart size={24} onClick={this.loveIncrement}/>
+                                <span className="opaced-small-text">{this.state.love}</span>
+                            </a>
+                            <a href="" className="like-button">
+                                <FaThumbsUp size={24} onClick={this.likeIncrement}/>
+                                <span className="opaced-small-text">{this.state.like}</span>
+                            </a>
                         </div>
                         <div className="read-more-button">
                             <ReadMore to={{

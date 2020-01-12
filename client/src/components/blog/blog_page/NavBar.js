@@ -82,7 +82,10 @@ export default class NavBar extends React.Component {
             <FixedNavbar fixed="top" light expand="md">
                 <Container>
                     <NavbarBrand href="/">
-                        <div className="brand">PN</div>
+                        <div>
+                            <p className="brand">PN</p>
+                            <p className="blog-navbar">Blog</p>    
+                        </div>
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
