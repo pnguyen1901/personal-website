@@ -38,9 +38,9 @@ const Profile = styled.img`
 
 const StyledButton = styled(Button)`
     margin-top: 2rem;
-    border-radius: 25px;
-    padding: 10px 15px;
-    border-width: 2px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border-width: 1px;
     border-color: #0025FC;
     color: #0025FC;
     -webkit-transition: 0.5s;

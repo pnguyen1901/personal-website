@@ -1,6 +1,6 @@
 import React from 'react';
 import * as contentful from 'contentful';
-import TopBar from '../components/TopBar';
+import NavBar from '../components/blog/blog_page/NavBar';
 import BlogItem from '../components/blog/BlogItem';
 import DropDown from '../components/blog/DropDown';
 import Footer from '../components/blog/blog_page/Footer';
@@ -65,7 +65,7 @@ class Blog extends  React.Component {
     render(){
         return (
             <>
-            <TopBar/>
+            <NavBar/>
             {/* <HeaderContainer className="blog-header-container">
             </HeaderContainer> */}
             <BlogContainer>
