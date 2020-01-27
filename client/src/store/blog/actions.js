@@ -11,3 +11,10 @@ export function loadBlogSuccess(posts) {
     }
 }
 
+export function setCurrentPost(id) {
+    return {
+        type: types.SET_CURRENT_POST,
+        id
+    }
+}
+

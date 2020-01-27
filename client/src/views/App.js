@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './App.scss';
-import TopBar from './components/TopBar';
-import Home from './components/Home';
-import About from './components/About';
-import Experience from './components/Experience';
-import Ads from './components/Ads';
-import Footer from './components/Footer';
-import Skills from './components/Skills';
+import '../App.scss';
+import TopBar from '../components/home/TopBar';
+import Home from '../components/home/Home';
+import About from '../components/home/About';
+import Experience from '../components/home/Experience';
+import Ads from '../components/home/Ads';
+import Footer from '../components/home/Footer';
+import Skills from '../components/home/Skills';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faReact } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane, faCloudDownloadAlt, faMugHot, faHeart, faChevronDown, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, N
   Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ThemeProvider, ThemeConsumer } from '../src/context/theme';
+import { ThemeProvider, ThemeConsumer } from '../context/theme';
 import { Link } from 'react-router-dom';
 
 const FixedNavbar = styled(Navbar)`

@@ -1,5 +1,7 @@
 export default {
     blog: {
-        posts: []
+        posts: [],
+        totalPost: null,
+        currentPost: null
     }
 }

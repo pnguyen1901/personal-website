@@ -5,10 +5,10 @@ import {Container, Row, Col,
     CardGroup, CardBody, Progress
 } from 'reactstrap';
 import styled from 'styled-components';
-import frontEnd from '../images/front-end.svg';
-import backEnd from '../images/back-end.svg';
-import tools from '../images/tools.svg';
-import { ThemeConsumer } from '../context/theme';
+import frontEnd from '../../images/front-end.svg';
+import backEnd from '../../images/back-end.svg';
+import tools from '../../images/tools.svg';
+import { ThemeConsumer } from '../../context/theme';
 
 const NegativeMarginTop = styled(Container)`
     margin-top: -14rem;

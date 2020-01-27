@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Media, Button } from 'reactstrap';
 import * as Markdown from 'react-markdown'
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import placeholder from '../../images/placeholder.jpg';
-import { FaHeart, FaThumbsUp } from 'react-icons/fa';
+import { connect } from 'react-redux';
+import { setCurrentPost } from '../../store/blog/actions';
 
 const ReadMore = styled(Link)`
     text-decoration: none;
@@ -28,38 +29,23 @@ const Img = styled.img`
 `;
 
 
-export default class BlogItem extends React.Component {
-    constructor(props){
-        super(props)
+function BlogItem (props) {
 
-        this.state = {
-            like: 0,
-            love: 0
-        }
+        // const [Stat, setStat] = useState({
+        //     like: 0,
+        //     love: 0
+        // })
 
-        this.likeIncrement = this.likeIncrement.bind(this);
-        this.loveIncrement = this.loveIncrement.bind(this);
-    }
+        // const likeIncrement = (e) => {
+        //     e.preventDefault();
+        //     setStat({like : Stat.like + 1, love: Stat.love})
+        // }
 
-    likeIncrement(event) {
-        event.preventDefault();
-        this.setState( (prevState) => {
-            return {
-                like: prevState.like + 1
-            }
-        } )
-    }
+        // const loveIncrement = (e) => {
+        //     e.preventDefault();
+        //     setStat({love : Stat.love + 1, like: Stat.like})
+        // }
 
-    loveIncrement(event) {
-        event.preventDefault();
-        this.setState( (prevState) => {
-            return {
-                love: prevState.love + 1
-            }
-        } )
-    }
-
-    render() {
         return(
             <Media className="blog-card">
                 <Media left >
@@ -67,27 +53,23 @@ export default class BlogItem extends React.Component {
                 </Media>
                 <Media body>
                     <Media heading>
-                        <div>{this.props.title}</div>
-                        <small className="opaced-small-text"><Moment format="MMM DD, YYYY">{this.props.date}</Moment> &middot; {this.props.readingTime} read</small>
+                        <div>{props.fields.title}</div>
+                        <small className="opaced-small-text">
+                            <Moment format="MMM DD, YYYY">{props.fields.date}</Moment> &middot; {props.fields.readingTime} read
+                        </small>
                     </Media>
-                    <Img src={`https:${this.props.photo.fields.file.url}`} alt="black and gray computer on a surface"/>
-                    <Markdown source={this.props.content.split(" ").slice(0,50).join(" ").concat('...')}/>
-                    <div class="nav-blog-item">
+                    <Img src={`https:${props.fields.photo.fields.file.url}`} alt="black and gray computer on a surface"/>
+                    <Markdown source={props.fields.content.split(" ").slice(0,50).join(" ").concat('...')}/>
+                    <div className="nav-blog-item">
                         <div >
-                            <a href="" className="love-button">
-                                <FaHeart size={24} onClick={this.loveIncrement}/>
-                                <span className="opaced-small-text">{this.state.love}</span>
-                            </a>
-                            <a href="" className="like-button">
-                                <FaThumbsUp size={24} onClick={this.likeIncrement}/>
-                                <span className="opaced-small-text">{this.state.like}</span>
-                            </a>
                         </div>
                         <div className="read-more-button">
                             <ReadMore to={{
-                                pathname: `/blog${this.props.path}`,
-                                state: this.props
-                            }}>Read More</ReadMore>
+                                pathname: `/blog${props.fields.path}`,
+                                state: props.fields
+                            }}
+                            onClick={() => props.dispatch({type: 'SET_CURRENT_POST', id: props.id})}
+                        >Read More</ReadMore>
                         </div>
                     </div>
 
@@ -95,5 +77,14 @@ export default class BlogItem extends React.Component {
             </Media>
                
         )
+}
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+    setCurrentPost: id => dispatch(setCurrentPost(id))
+        
     }
 }
+
+export default connect(mapDispatchToProps)(BlogItem);

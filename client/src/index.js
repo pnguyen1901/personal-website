@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Blog from './components/Blog';
-import BlogPost from './components/BlogPost';
+import App from './views/App';
+import Blog from './views/Blog';
+import BlogPost from './views/BlogPost';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -15,6 +15,7 @@ import { loadBlog } from './store/Blog';
 import ScrollToTop from './components/ScrollToTop';
 
 const store = configureStore()
+console.log(store.getState())
 store.dispatch(loadBlog())
 
 ReactDOM.render((

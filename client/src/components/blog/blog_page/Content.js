@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import * as Markdown from 'react-markdown';
 import {IoMdArrowBack} from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Img = styled.img`
     height: 250px;
@@ -30,10 +31,45 @@ const Content = (props) => {
                 <div className="post-content">
                     <Markdown source={props.content} />
                 </div>
+                <div className="related-posts">
+                    
+                    { props.id === 0 
+                            ? <Link to={{
+                                    pathname:`/blog${props.posts[props.id + 1].fields.path}`,
+                                    state: props.posts[props.id + 1].fields
+                                    }}
+                                    onClick={() => props.dispatch({type:'SET_CURRENT_POST', id: props.id + 1})}>Previous Post</Link>
+                            : (props.id === props.totalPost - 1 
+                                ? <Link to={{
+                                    pathname:`/blog${props.posts[props.id - 1].fields.path}`,
+                                    state: props.posts[props.id - 1].fields
+                                }}
+                                onClick={() => props.dispatch({type:'SET_CURRENT_POST', id: props.id - 1})}
+                                >Next Post</Link>
+                                :  <>
+                                    <Link to={{
+                                    pathname:`/blog${props.posts[1]}`,
+                                    state: props
+                                    }}
+                                    onClick={() => props.dispatch({type:'SET_CURRENT_POST', id: props.id + 1})}>Previous Post</Link>
+                                    <Link to={{
+                                    pathname:`/blog${props}`,
+                                    state: props
+                                    }}
+                                    onClick={() => props.dispatch({type:'SET_CURRENT_POST', id: props.id - 1})}>Next Post</Link></>)}
+                </div>
             </div>
         </div>
 
     )
 }
 
-export default Content;
+function mapStateToProps(state) {
+    return {
+        id: state.blog.currentPost,
+        totalPost: state.blog.totalPost,
+        posts: state.blog.posts
+    }
+}
+
+export default connect(mapStateToProps)(Content);

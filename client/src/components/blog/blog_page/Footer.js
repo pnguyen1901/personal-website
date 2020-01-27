@@ -18,6 +18,9 @@ class Footer extends React.Component {
     render() {
         return (
                 <FooterSection fluid>
+                    <Row>
+                        <Col ></Col> 
+                    </Row>
                     <Row className="h-100">
                         <Col lg="12" className="text-center">
                             <div className="mt-4">

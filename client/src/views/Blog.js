@@ -38,29 +38,6 @@ const HeaderImg = styled.img`
 `
 
 class Blog extends  React.Component {
-    // constructor(props) {
-    //     super(props);
-
-    //     this.state = {
-    //         posts: []
-    //     }
-
-    //     this.client = contentful.createClient({
-    //         space:'2iy38u78l3ky',
-    //         accessToken: 'QJo1bMeHQNDDnxSA9P5pSzVyhORAoOMbQnBvhTbvySI',
-    //     })
-
-    // }
-    // componentDidMount(){
-    //     this.fetchPosts().then(this.setPosts);
-    // }
-
-    // fetchPosts = () => this.client.getEntries();
-    // setPosts = (response) => {
-    //     this.setState({
-    //         posts: response.items
-    //     })
-    // }
 
     render(){
         return (
@@ -71,7 +48,7 @@ class Blog extends  React.Component {
             <BlogContainer>
                 <Row className="justify-content-center">
                     <Col xs="9">
-                        <div class="flex-container">
+                        <div className="flex-container">
                             <div className="blog-page-portrait">
                                 <HeaderImg src={portrait} />
                             </div>
@@ -81,12 +58,10 @@ class Blog extends  React.Component {
                                 <p>This is also an outlet for people to get to know more about me.</p>
                             </div>
                         </div>
-                        <div className="pull-left topic-dropdown">
-                            <DropDown/>
-                        </div>
                         {
-                            this.props.blog.posts.map( ({fields}, i ) => 
-                                <BlogItem key={i} {...fields} />
+                            this.props.blog.posts.map( (post, i ) => 
+                                // send the entire object as props
+                                <BlogItem key={i} {...post} id={props.id}/>
                             )
                         }
                     </Col>
@@ -103,7 +78,8 @@ class Blog extends  React.Component {
 
 function mapStateToProps(state, ownProps){
     return {
-        blog: state.blog
+        blog: state.blog,
+        id: state.blog.currentPost
     }
 }
 

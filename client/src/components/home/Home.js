@@ -5,9 +5,9 @@ import Typist from 'react-typist';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import photo from '../images/circle-cropped.png';
+import photo from '../../images/circle-cropped.png';
 import download from 'downloadjs';
-import { ThemeConsumer } from '../context/theme';
+import { ThemeConsumer } from '../../context/theme';
 
 const Profile = styled.img`
     margin: 1rem;
