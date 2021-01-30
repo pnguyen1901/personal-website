@@ -1,15 +1,12 @@
-import React from 'react';
-import * as contentful from 'contentful';
-import NavBar from '../components/blog/blog_page/NavBar';
-import BlogItem from '../components/blog/BlogItem';
-import DropDown from '../components/blog/DropDown';
-import Footer from '../components/blog/blog_page/Footer';
-import { Container, Row, Col } from 'reactstrap';
-import styled from 'styled-components';
-import portrait from '../images/portrait.png';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { connect } from 'react-redux';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import { Col, Container, Row } from 'reactstrap';
+import styled from 'styled-components';
+import BlogItem from '../components/blog/BlogItem';
+import Footer from '../components/blog/blog_page/Footer';
+import NavBar from '../components/blog/blog_page/NavBar';
+import portrait from '../images/portrait.png';
 
 library.add( faThumbsUp );
 
@@ -37,10 +34,13 @@ const HeaderImg = styled.img`
     border-radius: 5px;
 `
 
-class Blog extends  React.Component {
+export default function Blog () {
 
-    render(){
-        return (
+    const [posts, setPosts] = useState([{
+        id: 1
+    }])
+
+    return (
             <>
             <NavBar/>
             {/* <HeaderContainer className="blog-header-container">
@@ -59,9 +59,9 @@ class Blog extends  React.Component {
                             </div>
                         </div>
                         {
-                            this.props.blog.posts.map( (post, i ) => 
+                            posts.map( (post, i ) => 
                                 // send the entire object as props
-                                <BlogItem key={i} {...post} id={props.id}/>
+                                <BlogItem key={i} {...post} id={post.id}/>
                             )
                         }
                     </Col>
@@ -70,17 +70,7 @@ class Blog extends  React.Component {
             <div>
                 <Footer/>
             </div>
-
             </>
         )
-    }
 }
 
-function mapStateToProps(state, ownProps){
-    return {
-        blog: state.blog,
-        id: state.blog.currentPost
-    }
-}
-
-export default connect(mapStateToProps)(Blog)

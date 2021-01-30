@@ -1,14 +1,14 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
-import {Container, Row, Col,
-    Card, CardImg, CardTitle, CardText,
-    CardGroup, CardBody, Progress
+import {
+    Card,
+    CardBody, CardGroup, CardImg, CardText, CardTitle, Container
 } from 'reactstrap';
 import styled from 'styled-components';
-import frontEnd from '../../images/front-end.svg';
-import backEnd from '../../images/back-end.svg';
-import tools from '../../images/tools.svg';
 import { ThemeConsumer } from '../../context/theme';
+import backEnd from '../../images/back-end.svg';
+import frontEnd from '../../images/front-end.svg';
+import tools from '../../images/tools.svg';
 
 const NegativeMarginTop = styled(Container)`
     margin-top: -14rem;
@@ -107,8 +107,6 @@ class Skills extends React.Component {
                             </NegativeMarginTop>
                 )}
             </ThemeConsumer>
-
-
         )
     }
 }

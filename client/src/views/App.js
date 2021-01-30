@@ -1,23 +1,28 @@
-import React, { Component } from 'react';
-import '../App.scss';
-import TopBar from '../components/home/TopBar';
-import Home from '../components/home/Home';
-import About from '../components/home/About';
-import Experience from '../components/home/Experience';
-import Ads from '../components/home/Ads';
-import Footer from '../components/home/Footer';
-import Skills from '../components/home/Skills';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab, faReact } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faCloudDownloadAlt, faMugHot, faHeart, faChevronDown, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
-import { faLinkedinIn, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import {Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button,
-  Modal, ModalHeader, ModalBody, ModalFooter,
-  Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
-import styled from 'styled-components';
+import { fab, faGithub, faLinkedin, faLinkedinIn, faReact } from '@fortawesome/free-brands-svg-icons';
+import { faCheckCircle, faChevronDown, faCloudDownloadAlt, faHeart, faMugHot, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ThemeProvider, ThemeConsumer } from '../context/theme';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {
+    Button,
+
+    Col, Collapse, Container,
+
+    Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink,
+
+    Row
+} from 'reactstrap';
+import styled from 'styled-components';
+import '../App.scss';
+import About from '../components/home/About';
+import Ads from '../components/home/Ads';
+import Experience from '../components/home/Experience';
+import Footer from '../components/home/Footer';
+import Home from '../components/home/Home';
+import PreviousWork from '../components/home/PreviousWork';
+import Skills from '../components/home/Skills';
+import { ThemeConsumer, ThemeProvider } from '../context/theme';
 
 const FixedNavbar = styled(Navbar)`
 box-shadow: 0 2px 5px 0 rgb(233,240,243,0.5);
@@ -56,6 +61,7 @@ class App extends Component {
   refHome = React.createRef();
   refExperience = React.createRef();
   refAbout = React.createRef();
+  refPreviousWork = React.createRef();
 
   constructor(props) {
     super(props);
@@ -153,100 +159,105 @@ class App extends Component {
   render() {
     return (
         <ThemeProvider value={this.state}>
-        <div className={this.state.theme}>
-        <>
-            <ThemeConsumer>
-                { ({theme}) => (
-                    <div className={`bg-${theme}`}>
-                        <FixedNavbar fixed="top" light expand="md">
-                        <Container>
-                            <NavbarBrand href="/">
-                                <div className="brand">PN</div>
-                            </NavbarBrand>
-                            <NavbarToggler onClick={this.toggle}/>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="ml-auto align-items-center" navbar>
-                                    <NavItem>
-                                        <NavLink href="" onClick={ () => {this.handleScrollto(this.refHome)}}><Link to='/'>Home</Link></NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink href="#" onClick={ () => {this.handleScrollto(this.refAbout)}}>About</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink href="#" onClick={ () => {this.handleScrollto(this.refExperience)} }>Experience</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink href="" ><Link to='/blog'>Blog</Link></NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <StyledButton onClick={this.modaltoggle} outline color="secondary" className="btn-custom"><FontAwesomeIcon icon="paper-plane"/> Let's Chat</StyledButton>{' '}
-                                    </NavItem>
-                                </Nav>
-                            </Collapse>
-                        </Container>
-                        <Modal size="lg" isOpen={this.state.modal} toggle={this.modaltoggle} className={this.props.className}>
-                            <ModalHeader className="no-border-bottom" toggle={this.modaltoggle}> How can I help you today?</ModalHeader>
-                            <ModalBody>
-                                <Form>
-                                    <Row form>
-                                        <Col md={6}>
-                                            <FormGroup>
-                                                <Label for="Name">Name</Label>
-                                                <Input value={this.state.sender} onChange={this.handleChange} type="name" name="sender" id="name" placeholder="Your Full Name"/>
-                                            </FormGroup>
-                                        </Col>
-                                        <Col md={6}>
-                                            <FormGroup>
-                                                <Label for="Email">Email</Label>
-                                                <Input value={this.state.senderEmail} onChange={this.handleChange} type="email" name="senderEmail" id="email" placeholder="Your Email Address"/>
-                                            </FormGroup>
-                                        </Col>
-                                        <Col sm={12}>
-                                            <FormGroup>
-                                                <Label for="Details">Questions</Label>
-                                                <Input value={this.state.text} onChange={this.handleChange} type="textarea" rows="10" name="text" placeholder="I'd love to hear more about your business problems!"/>
-                                            </FormGroup>
-                                        </Col>
-                                    </Row>
-                                </Form>
-                            </ModalBody>
-                            <ModalFooter className="justify-content-center no-border-top">
-                                <SubmitButton color="#0025FC" onClick={this.sendEmail} id="submit-btn" className="btn-custom" disabled={!(this.state.sender && this.state.senderEmail && this.state.text)}>Submit</SubmitButton>{' '}
-                            </ModalFooter>
-                        </Modal>
-                        <Modal size="md" isOpen={this.state.nestedmodal} toggle={this.nestedmodaltoggle}>
-                            <ModalBody>
-                                <div className="text-center">
-                                    <div className="mb-2 center">
-                                        <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
+            <div className={this.state.theme}>
+                <>
+                <ThemeConsumer>
+                    { ({theme}) => (
+                        <div className={`bg-${theme}`}>
+                            <FixedNavbar fixed="top" light expand="md">
+                            <Container>
+                                <NavbarBrand href="/">
+                                    <div className="brand">PN</div>
+                                </NavbarBrand>
+                                <NavbarToggler onClick={this.toggle}/>
+                                <Collapse isOpen={this.state.isOpen} navbar>
+                                    <Nav className="ml-auto align-items-center" navbar>
+                                        <NavItem>
+                                            <NavLink href="" onClick={ () => {this.handleScrollto(this.refHome)}}><Link to='/'>Home</Link></NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#" onClick={ () => {this.handleScrollto(this.refAbout)}}>About</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#" onClick={ () => {this.handleScrollto(this.refExperience)} }>Experience</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="#" onClick={ () => {this.handleScrollto(this.refPreviousWork)} }>Previous Work</NavLink>
+                                        </NavItem>
+                                        {/* <NavItem>
+                                            <NavLink href="" ><Link to='/blog'>Blog</Link></NavLink>
+                                        </NavItem> */}
+                                        <NavItem>
+                                            <StyledButton onClick={this.modaltoggle} outline color="secondary" className="btn-custom"><FontAwesomeIcon icon="paper-plane"/> Let's Chat</StyledButton>
+                                        </NavItem>
+                                    </Nav>
+                                </Collapse>
+                            </Container>
+                            <Modal size="lg" isOpen={this.state.modal} toggle={this.modaltoggle} className={this.props.className}>
+                                <ModalHeader className="no-border-bottom" toggle={this.modaltoggle}> How can I help you today?</ModalHeader>
+                                <ModalBody>
+                                    <Form>
+                                        <Row form>
+                                            <Col md={6}>
+                                                <FormGroup>
+                                                    <Label for="Name">Name</Label>
+                                                    <Input value={this.state.sender} onChange={this.handleChange} type="name" name="sender" id="name" placeholder="Your Full Name"/>
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md={6}>
+                                                <FormGroup>
+                                                    <Label for="Email">Email</Label>
+                                                    <Input value={this.state.senderEmail} onChange={this.handleChange} type="email" name="senderEmail" id="email" placeholder="Your Email Address"/>
+                                                </FormGroup>
+                                            </Col>
+                                            <Col sm={12}>
+                                                <FormGroup>
+                                                    <Label for="Details">Questions</Label>
+                                                    <Input value={this.state.text} onChange={this.handleChange} type="textarea" rows="10" name="text" placeholder="I'd love to hear more about your business problems!"/>
+                                                </FormGroup>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+                                </ModalBody>
+                                <ModalFooter className="justify-content-center no-border-top">
+                                    <SubmitButton color="#0025FC" onClick={this.sendEmail} id="submit-btn" className="btn-custom" disabled={!(this.state.sender && this.state.senderEmail && this.state.text)}>Submit</SubmitButton>{' '}
+                                </ModalFooter>
+                            </Modal>
+                            <Modal size="md" isOpen={this.state.nestedmodal} toggle={this.nestedmodaltoggle}>
+                                <ModalBody>
+                                    <div className="text-center">
+                                        <div className="mb-2 center">
+                                            <FontAwesomeIcon size="3x" color="#2CA02C" icon="check-circle"/>
+                                        </div>
+                                        <h4>Thank you for reaching out!</h4>
+                                        <p>You should receive a response within 24 hours.</p>
                                     </div>
-                                    <h4>Thank you for reaching out!</h4>
-                                    <p>You should receive a response within 24 hours.</p>
-                                </div>
-                            </ModalBody>
-                        </Modal>
-                    </FixedNavbar>
+                                </ModalBody>
+                            </Modal>
+                            </FixedNavbar>
+                        </div>
+                    )}
+                </ThemeConsumer>
+                <div className="App">
+                    <div ref={this.refHome}>
+                        <Home />
+                    </div>
+                    <div ref={this.refAbout}>
+                        <About/>
+                    </div>
+                    <Skills/>
+                    <div ref={this.refExperience}>
+                        <Experience />
+                    </div>
+                    <div ref={this.refPreviousWork}>
+                        <PreviousWork />
+                    </div>
+                    <Ads/>
+                    <Footer/>
                 </div>
-
-                )}
-            </ThemeConsumer>
-        <div className="App">
-          <div ref={this.refHome}>
-            <Home />
-          </div>
-          <div ref={this.refAbout}>
-            <About/>
-          </div>
-          <Skills/>
-          <div ref={this.refExperience}>
-            <Experience />
-          </div>
-          <Ads/>
-          <Footer/>
-        </div>
-      </>
-      </div>
-      </ThemeProvider>
+                </>
+            </div>
+        </ThemeProvider>
     )
   }
 }
