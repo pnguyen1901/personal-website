@@ -18,7 +18,7 @@
     "cors": "^2.8.5",
     "downloadjs": "^1.4.7",
     "jquery": "^3.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.14.1",
     "popper.js": "^1.15.0",
     "react": "^16.9.0",
